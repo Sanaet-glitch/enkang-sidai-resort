@@ -5,16 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Enkang Sidai Resort Ewuaso — A Maasai-inspired sanctuary in Kenya. Camping, Manyattas, Rooms, Restaurant and cultural experiences 1.5 hours from Nairobi." />
   <meta name="theme-color" content="#2C1A08" />
-
-  <!-- Open Graph — controls how the site looks when shared on WhatsApp, Facebook -->
   <meta property="og:title" content="Enkang Sidai Resort Ewuaso" />
   <meta property="og:description" content="An oasis where the wild begins. Maasai manyattas, camping under the stars, and authentic Kenyan hospitality in Ewuaso." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sanaet-glitch.github.io/enkang-sidai-resort/" />
-
   <title>Enkang Sidai Resort Ewuaso — Where the Wild Begins</title>
 
-  <!-- FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
@@ -22,11 +18,8 @@
   <style>
     /* ============================================================
        ENKANG SIDAI — DESIGN SYSTEM
-       All design decisions live here as variables.
-       Change a variable, the whole site updates.
     ============================================================ */
     :root {
-      /* Brand Colors — extracted from logo */
       --ochre:       #D4813A;
       --ochre-light: #E8A55A;
       --earth:       #2C1A08;
@@ -38,33 +31,22 @@
       --cream-warm:  #FAF4E8;
       --bone:        #E8D8BA;
 
-      /* Typography */
       --font-display: 'Cormorant Garamond', Georgia, serif;
       --font-body:    'DM Sans', system-ui, sans-serif;
       --font-mono:    'DM Mono', monospace;
 
-      /* Spacing */
       --space-xs:  0.5rem;
       --space-sm:  1rem;
       --space-md:  2rem;
       --space-lg:  4rem;
       --space-xl:  7rem;
 
-      /* Transitions */
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
       --ease-in:  cubic-bezier(0.7, 0, 0.84, 0);
-
       --max-width: 1200px;
     }
 
-    /* ============================================================
-       RESET & BASE
-    ============================================================ */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     html {
       font-size: 16px;
@@ -109,18 +91,6 @@
       flex-shrink: 0;
     }
 
-    .section-heading {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 300;
-      line-height: 1.08;
-      color: var(--earth);
-    }
-    .section-heading em {
-      font-style: italic;
-      color: var(--sienna);
-    }
-
     .btn-primary {
       display: inline-flex;
       align-items: center;
@@ -148,8 +118,7 @@
     }
     .btn-primary:hover::after { transform: translateX(0); }
     .btn-primary:hover { transform: translateY(-1px); }
-    .btn-primary span,
-    .btn-primary svg { position: relative; z-index: 1; }
+    .btn-primary span, .btn-primary svg { position: relative; z-index: 1; }
 
     .btn-ghost {
       display: inline-flex;
@@ -166,12 +135,8 @@
       border: 1px solid rgba(245, 236, 215, 0.35);
       transition: border-color 0.25s, color 0.25s;
     }
-    .btn-ghost:hover {
-      border-color: var(--ochre);
-      color: var(--ochre);
-    }
+    .btn-ghost:hover { border-color: var(--ochre); color: var(--ochre); }
 
-    /* Maasai pattern divider */
     .pattern-divider {
       height: 8px;
       width: 100%;
@@ -186,13 +151,10 @@
       );
     }
 
-    /* Scroll reveal */
     .reveal {
       opacity: 0;
       transform: translateY(32px);
-      transition:
-        opacity  0.8s var(--ease-out),
-        transform 0.8s var(--ease-out);
+      transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
     }
     .reveal.visible { opacity: 1; transform: translateY(0); }
     .reveal-d1 { transition-delay: 0.1s; }
@@ -275,7 +237,6 @@
       background: var(--ochre);
       padding: 0.65rem 1.4rem;
       border-radius: 2px;
-      border: none;
       cursor: pointer;
       transition: background 0.2s;
       text-decoration: none;
@@ -343,14 +304,7 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        168deg,
-        #0D0801 0%,
-        #1C1008 25%,
-        #2C1A08 50%,
-        #1A200A 75%,
-        #0A0D06 100%
-      );
+      background: linear-gradient(168deg, #0D0801 0%, #1C1008 25%, #2C1A08 50%, #1A200A 75%, #0A0D06 100%);
     }
     .hero-bg::after {
       content: '';
@@ -393,35 +347,16 @@
       bottom: 0; left: 0; right: 0;
       height: 42%;
       background: linear-gradient(180deg, transparent 0%, rgba(10, 13, 6, 0.85) 60%, #0A0D06 100%);
-      clip-path: polygon(
-        0% 100%, 0% 55%,
-        4% 42%, 9% 52%, 14% 28%, 20% 46%, 27% 18%,
-        34% 40%, 40% 8%, 47% 36%, 54% 20%,
-        60% 44%, 66% 14%, 73% 38%, 78% 24%,
-        84% 46%, 89% 30%, 94% 48%, 100% 32%,
-        100% 100%
-      );
+      clip-path: polygon(0% 100%, 0% 55%, 4% 42%, 9% 52%, 14% 28%, 20% 46%, 27% 18%, 34% 40%, 40% 8%, 47% 36%, 54% 20%, 60% 44%, 66% 14%, 73% 38%, 78% 24%, 84% 46%, 89% 30%, 94% 48%, 100% 32%, 100% 100%);
     }
     .hero-hills {
       position: absolute;
       bottom: 0; left: 0; right: 0;
       height: 26%;
       background: linear-gradient(180deg, transparent 0%, #0D1008 50%, #0A0D06 100%);
-      clip-path: polygon(
-        0% 100%, 0% 65%,
-        6% 52%, 14% 62%, 23% 44%,
-        33% 58%, 44% 38%, 56% 55%,
-        66% 40%, 78% 58%, 88% 44%,
-        94% 55%, 100% 48%,
-        100% 100%
-      );
+      clip-path: polygon(0% 100%, 0% 65%, 6% 52%, 14% 62%, 23% 44%, 33% 58%, 44% 38%, 56% 55%, 66% 40%, 78% 58%, 88% 44%, 94% 55%, 100% 48%, 100% 100%);
     }
-    .hero-ground {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 12%;
-      background: #0A0D06;
-    }
+    .hero-ground { position: absolute; bottom: 0; left: 0; right: 0; height: 12%; background: #0A0D06; }
 
     .hero-content {
       position: relative;
@@ -444,11 +379,7 @@
       transform: translateY(16px);
       animation: hero-reveal 0.7s 0.3s var(--ease-out) forwards;
     }
-    .hero-eyebrow::before {
-      content: '';
-      width: 2.5rem; height: 1px;
-      background: var(--ochre);
-    }
+    .hero-eyebrow::before { content: ''; width: 2.5rem; height: 1px; background: var(--ochre); }
 
     .hero-h1 {
       font-family: var(--font-display);
@@ -461,15 +392,9 @@
       transform: translateY(24px);
       animation: hero-reveal 0.9s 0.5s var(--ease-out) forwards;
     }
-    .hero-h1 em {
-      font-style: italic;
-      color: var(--ochre);
-      display: block;
-    }
+    .hero-h1 em { font-style: italic; color: var(--ochre); display: block; }
 
-    @keyframes hero-reveal {
-      to { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes hero-reveal { to { opacity: 1; transform: translateY(0); } }
 
     .hero-sub {
       font-family: var(--font-body);
@@ -495,8 +420,7 @@
 
     .hero-scroll {
       position: absolute;
-      right: 5vw;
-      bottom: 5rem;
+      right: 5vw; bottom: 5rem;
       z-index: 10;
       display: flex;
       flex-direction: column;
@@ -558,11 +482,7 @@
     /* ============================================================
        MARQUEE
     ============================================================ */
-    .marquee-strip {
-      background: var(--sienna);
-      padding: 0.75rem 0;
-      overflow: hidden;
-    }
+    .marquee-strip { background: var(--sienna); padding: 0.75rem 0; overflow: hidden; }
     .marquee-track {
       display: flex;
       width: max-content;
@@ -585,22 +505,16 @@
       align-items: center;
       gap: 2.5rem;
     }
-    .marquee-item::after {
-      content: '✦';
-      color: rgba(245, 236, 215, 0.4);
-      font-size: 0.4rem;
-    }
+    .marquee-item::after { content: '✦'; color: rgba(245, 236, 215, 0.4); font-size: 0.4rem; }
 
     /* ============================================================
        WHATSAPP FLOAT
     ============================================================ */
     .whatsapp-float {
       position: fixed;
-      bottom: 1.75rem;
-      right: 1.75rem;
+      bottom: 1.75rem; right: 1.75rem;
       z-index: 850;
-      width: 52px;
-      height: 52px;
+      width: 52px; height: 52px;
       border-radius: 50%;
       background: #25D366;
       display: flex;
@@ -651,51 +565,27 @@
       position: relative;
       overflow: hidden;
     }
-
-    /* Subtle background texture — acacia silhouette via CSS */
     #about::before {
       content: '';
       position: absolute;
-      right: -6%;
-      top: -5%;
-      width: min(520px, 80vw);
-      height: min(520px, 80vw);
+      right: -6%; top: -5%;
+      width: min(520px, 80vw); height: min(520px, 80vw);
       border-radius: 50%;
-      background: radial-gradient(
-        ellipse at 60% 40%,
-        rgba(212, 129, 58, 0.06) 0%,
-        rgba(74, 92, 42, 0.04) 50%,
-        transparent 75%
-      );
+      background: radial-gradient(ellipse at 60% 40%, rgba(212, 129, 58, 0.06) 0%, rgba(74, 92, 42, 0.04) 50%, transparent 75%);
       pointer-events: none;
     }
     #about::after {
       content: '';
       position: absolute;
-      left: -4%;
-      bottom: 0;
-      width: min(320px, 60vw);
-      height: min(320px, 60vw);
+      left: -4%; bottom: 0;
+      width: min(320px, 60vw); height: min(320px, 60vw);
       border-radius: 50%;
-      background: radial-gradient(
-        ellipse at 40% 60%,
-        rgba(181, 69, 27, 0.05) 0%,
-        transparent 65%
-      );
+      background: radial-gradient(ellipse at 40% 60%, rgba(181, 69, 27, 0.05) 0%, transparent 65%);
       pointer-events: none;
     }
 
-    .about-inner {
-      position: relative;
-      z-index: 1;
-      max-width: var(--max-width);
-      margin: 0 auto;
-    }
-
-    /* Top row: label + heading + intro */
-    .about-top {
-      margin-bottom: 3.5rem;
-    }
+    .about-inner { position: relative; z-index: 1; max-width: var(--max-width); margin: 0 auto; }
+    .about-top { margin-bottom: 3.5rem; }
 
     .about-heading {
       font-family: var(--font-display);
@@ -706,10 +596,7 @@
       margin-bottom: 1.75rem;
       max-width: 680px;
     }
-    .about-heading em {
-      font-style: italic;
-      color: var(--sienna);
-    }
+    .about-heading em { font-style: italic; color: var(--sienna); }
 
     .about-body {
       font-family: var(--font-body);
@@ -720,7 +607,6 @@
       max-width: 580px;
     }
 
-    /* Name etymology pull-quote */
     .about-etymology {
       margin: 2.5rem 0 0;
       padding: 1.5rem 1.75rem;
@@ -729,12 +615,7 @@
       border-radius: 0 4px 4px 0;
       max-width: 480px;
     }
-    .about-etymology-line {
-      display: flex;
-      align-items: baseline;
-      gap: 0.75rem;
-      margin-bottom: 0.5rem;
-    }
+    .about-etymology-line { display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; }
     .about-etymology-line:last-child { margin-bottom: 0; }
     .about-etymology-word {
       font-family: var(--font-display);
@@ -753,7 +634,6 @@
       color: rgba(44, 26, 8, 0.5);
     }
 
-    /* Values grid */
     .about-values {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -764,25 +644,14 @@
       overflow: hidden;
       margin-top: 3.5rem;
     }
-
     .about-value {
       background: var(--cream-warm);
       padding: 2rem 1.75rem;
       position: relative;
       transition: background 0.3s var(--ease-out);
     }
-    .about-value:hover {
-      background: var(--cream);
-    }
-
-    .about-value-icon {
-      width: 36px;
-      height: 36px;
-      margin-bottom: 1.1rem;
-      color: var(--ochre);
-      flex-shrink: 0;
-    }
-
+    .about-value:hover { background: var(--cream); }
+    .about-value-icon { width: 36px; height: 36px; margin-bottom: 1.1rem; color: var(--ochre); }
     .about-value-title {
       font-family: var(--font-display);
       font-size: 1.25rem;
@@ -792,7 +661,6 @@
       margin-bottom: 0.6rem;
       line-height: 1.2;
     }
-
     .about-value-desc {
       font-family: var(--font-body);
       font-size: 0.85rem;
@@ -800,8 +668,6 @@
       color: rgba(44, 26, 8, 0.6);
       font-weight: 300;
     }
-
-    /* Accent corner mark on each value card */
     .about-value::after {
       content: '';
       position: absolute;
@@ -812,11 +678,8 @@
       border-color: transparent var(--bone) transparent transparent;
       transition: border-color 0.3s;
     }
-    .about-value:hover::after {
-      border-color: transparent var(--ochre) transparent transparent;
-    }
+    .about-value:hover::after { border-color: transparent var(--ochre) transparent transparent; }
 
-    /* Sidai meaning pull-line at the bottom */
     .about-footer-line {
       margin-top: 3.5rem;
       padding-top: 2rem;
@@ -833,10 +696,7 @@
       color: var(--earth);
       line-height: 1.4;
     }
-    .about-footer-quote strong {
-      font-weight: 600;
-      color: var(--sienna);
-    }
+    .about-footer-quote strong { font-weight: 600; color: var(--sienna); }
     .about-footer-attr {
       font-family: var(--font-mono);
       font-size: 0.52rem;
@@ -846,6 +706,529 @@
       white-space: nowrap;
       flex-shrink: 0;
     }
+
+    /* ============================================================
+       ACCOMMODATION SECTION
+    ============================================================ */
+    #accommodation {
+      background: var(--cream);
+      padding: 6rem 5vw 0;
+    }
+
+    .accom-inner { max-width: var(--max-width); margin: 0 auto; }
+
+    .accom-header { margin-bottom: 3.5rem; }
+    .accom-heading {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 300;
+      line-height: 1.06;
+      color: var(--earth);
+      margin-bottom: 1rem;
+      max-width: 600px;
+    }
+    .accom-heading em { font-style: italic; color: var(--sienna); }
+    .accom-intro {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.85;
+      color: rgba(44, 26, 8, 0.65);
+      font-weight: 300;
+      max-width: 520px;
+    }
+
+    /* ── TABS ── */
+    .accom-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--bone);
+      margin-bottom: 3rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .accom-tabs::-webkit-scrollbar { display: none; }
+
+    .accom-tab {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(44, 26, 8, 0.4);
+      padding: 0.85rem 1.5rem;
+      border: none;
+      background: none;
+      cursor: pointer;
+      white-space: nowrap;
+      position: relative;
+      transition: color 0.25s;
+      margin-bottom: -1px;
+    }
+    .accom-tab::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 2px;
+      background: var(--ochre);
+      transform: scaleX(0);
+      transition: transform 0.3s var(--ease-out);
+    }
+    .accom-tab:hover { color: var(--earth); }
+    .accom-tab.active { color: var(--earth); }
+    .accom-tab.active::after { transform: scaleX(1); }
+
+    .accom-tab-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: var(--bone);
+      font-size: 0.5rem;
+      margin-left: 0.5rem;
+      color: rgba(44, 26, 8, 0.5);
+      transition: background 0.25s, color 0.25s;
+    }
+    .accom-tab.active .accom-tab-count { background: var(--ochre); color: var(--cream-warm); }
+
+    .accom-panel { display: none; }
+    .accom-panel.active { display: block; }
+
+    /* ── IMAGE PLACEHOLDERS ── */
+    /*
+      IMAGE SWAP INSTRUCTIONS:
+      When client photos arrive, inside each .accom-img-wrap or .manyatta-img-wrap,
+      remove the placeholder div and add:
+        <img src="images/FILENAME.webp" alt="DESCRIPTION" loading="lazy" />
+      Target: WebP, under 150KB, compressed via Squoosh.app.
+      Rooms aspect ratio: 4:3. Manyattas: 3:2. Camping: 16:9.
+    */
+    .img-placeholder {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+    }
+    .img-placeholder svg { color: rgba(212, 129, 58, 0.3); width: 28px; height: 28px; }
+    .img-placeholder-label {
+      font-family: var(--font-mono);
+      font-size: 0.5rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(212, 129, 58, 0.5);
+    }
+
+    /* ── ROOMS ── */
+    .rooms-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      padding-bottom: 5rem;
+    }
+
+    .room-card {
+      background: var(--cream-warm);
+      border: 1px solid var(--bone);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: box-shadow 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+    }
+    .room-card:hover {
+      box-shadow: 0 8px 40px rgba(44, 26, 8, 0.1);
+      transform: translateY(-2px);
+    }
+    .room-card:hover .room-img img { transform: scale(1.04); }
+
+    .room-img {
+      overflow: hidden;
+    }
+    .room-img .img-placeholder {
+      aspect-ratio: 4/3;
+      background: linear-gradient(145deg, var(--earth-deep) 0%, var(--earth) 60%, rgba(212, 129, 58, 0.15) 100%);
+    }
+    .room-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.6s var(--ease-out);
+    }
+
+    .room-body { padding: 1.5rem; }
+    .room-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.6rem;
+    }
+    .room-type {
+      font-family: var(--font-mono);
+      font-size: 0.5rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--ochre);
+    }
+    .room-price {
+      font-family: var(--font-mono);
+      font-size: 0.52rem;
+      letter-spacing: 0.12em;
+      color: rgba(44, 26, 8, 0.4);
+    }
+    .room-name {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--earth);
+      line-height: 1.1;
+      margin-bottom: 0.6rem;
+    }
+    .room-desc {
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      line-height: 1.75;
+      color: rgba(44, 26, 8, 0.6);
+      font-weight: 300;
+      margin-bottom: 1.25rem;
+    }
+    .room-amenities {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .room-amenity {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: var(--font-mono);
+      font-size: 0.5rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(44, 26, 8, 0.5);
+      background: var(--cream);
+      border: 1px solid var(--bone);
+      padding: 0.3rem 0.6rem;
+      border-radius: 2px;
+    }
+    .room-amenity svg { width: 10px; height: 10px; color: var(--ochre); flex-shrink: 0; }
+
+    .room-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sienna);
+      text-decoration: none;
+      transition: gap 0.2s var(--ease-out), color 0.2s;
+      border-top: 1px solid var(--bone);
+      padding-top: 1.25rem;
+    }
+    .room-cta:hover { gap: 0.8rem; color: var(--ochre); }
+    .room-cta svg { width: 14px; height: 14px; transition: transform 0.2s; }
+    .room-cta:hover svg { transform: translateX(3px); }
+
+    /* ── MANYATTAS ── */
+    .manyattas-grid {
+      padding-bottom: 5rem;
+    }
+
+    .manyatta-card {
+      border-bottom: 1px solid var(--bone);
+      padding: 2.5rem 0;
+      position: relative;
+    }
+    .manyatta-card:first-child { padding-top: 0; }
+
+    .manyatta-img {
+      overflow: hidden;
+      border-radius: 4px;
+      margin-bottom: 1.75rem;
+    }
+    .manyatta-img .img-placeholder {
+      aspect-ratio: 3/2;
+      background: linear-gradient(145deg, var(--earth-deep) 0%, rgba(74, 92, 42, 0.5) 60%, rgba(212, 129, 58, 0.1) 100%);
+    }
+    .manyatta-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.6s var(--ease-out);
+    }
+    .manyatta-card:hover .manyatta-img img { transform: scale(1.03); }
+
+    .manyatta-num {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--bone);
+      line-height: 1;
+      position: absolute;
+      top: 2.5rem; right: 0;
+      pointer-events: none;
+      user-select: none;
+    }
+    .manyatta-card:first-child .manyatta-num { top: 0; }
+
+    .manyatta-sub {
+      font-family: var(--font-mono);
+      font-size: 0.5rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--olive);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .manyatta-sub::before { content: ''; width: 1rem; height: 1px; background: var(--olive); }
+
+    .manyatta-name {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--earth);
+      line-height: 1.05;
+      margin-bottom: 0.35rem;
+    }
+    .manyatta-meaning {
+      font-family: var(--font-mono);
+      font-size: 0.52rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ochre);
+      margin-bottom: 1.1rem;
+    }
+    .manyatta-desc {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: rgba(44, 26, 8, 0.65);
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+      max-width: 520px;
+    }
+    .manyatta-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1.75rem;
+    }
+    .manyatta-features li {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      color: rgba(44, 26, 8, 0.6);
+      font-weight: 300;
+    }
+    .manyatta-features li::before {
+      content: '';
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--ochre);
+      flex-shrink: 0;
+    }
+    .manyatta-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .manyatta-price {
+      font-family: var(--font-mono);
+      font-size: 0.52rem;
+      letter-spacing: 0.15em;
+      color: rgba(44, 26, 8, 0.35);
+      text-transform: uppercase;
+    }
+    .manyatta-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--earth);
+      color: var(--cream-warm);
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.85rem 1.5rem;
+      border-radius: 2px;
+      text-decoration: none;
+      transition: background 0.25s var(--ease-out), gap 0.2s;
+    }
+    .manyatta-cta:hover { background: var(--sienna); gap: 0.9rem; }
+    .manyatta-cta svg { width: 14px; height: 14px; }
+
+    /* ── CAMPING ── */
+    .camping-panel { padding-bottom: 5rem; }
+
+    .camping-hero {
+      background: var(--earth-deep);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 3rem;
+    }
+    .camping-img .img-placeholder {
+      aspect-ratio: 16/9;
+      background: linear-gradient(168deg, #0D0801 0%, #1C1008 40%, #1A200A 80%, #0A0D06 100%);
+      position: relative;
+    }
+    /* faint stars in camping placeholder */
+    .camping-img .img-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(1px 1px at 15% 20%, rgba(245,236,215,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 32% 15%, rgba(245,236,215,0.4) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 50% 25%, rgba(245,236,215,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 68% 18%, rgba(245,236,215,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 82% 22%, rgba(245,236,215,0.5) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 25% 40%, rgba(245,236,215,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 75% 38%, rgba(245,236,215,0.4) 0%, transparent 100%);
+    }
+    .camping-img .img-placeholder .img-placeholder-label { color: rgba(212, 129, 58, 0.4); position: relative; }
+    .camping-img .img-placeholder svg { color: rgba(212, 129, 58, 0.25); position: relative; }
+    .camping-img img { width: 100%; display: block; }
+
+    .camping-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 2rem 1.75rem;
+      background: linear-gradient(to top, rgba(10, 13, 6, 0.92) 0%, transparent 100%);
+    }
+    .camping-capacity {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--ochre);
+      line-height: 1;
+    }
+    .camping-capacity-label {
+      font-family: var(--font-mono);
+      font-size: 0.5rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(245, 236, 215, 0.5);
+      margin-top: 0.25rem;
+    }
+
+    .camping-body { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+
+    .camping-desc {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.9;
+      color: rgba(44, 26, 8, 0.68);
+      font-weight: 300;
+    }
+
+    .camping-includes {
+      background: var(--cream-warm);
+      border: 1px solid var(--bone);
+      border-radius: 4px;
+      padding: 1.75rem;
+    }
+    .camping-includes-title {
+      font-family: var(--font-mono);
+      font-size: 0.52rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--ochre);
+      margin-bottom: 1.1rem;
+    }
+    .camping-includes-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .camping-includes-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      line-height: 1.5;
+      color: rgba(44, 26, 8, 0.65);
+      font-weight: 300;
+    }
+    .camping-includes-list li::before {
+      content: '✦';
+      color: var(--ochre);
+      font-size: 0.45rem;
+      flex-shrink: 0;
+      margin-top: 0.35rem;
+    }
+
+    .camping-cta-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 2rem;
+    }
+    .camping-cta-primary {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      background: var(--olive);
+      color: var(--cream-warm);
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 1.1rem 1.75rem;
+      border-radius: 2px;
+      text-decoration: none;
+      transition: background 0.25s var(--ease-out);
+    }
+    .camping-cta-primary:hover { background: var(--olive-light); }
+    .camping-cta-primary svg { width: 16px; height: 16px; fill: white; flex-shrink: 0; }
+    .camping-cta-note {
+      font-family: var(--font-mono);
+      font-size: 0.5rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(44, 26, 8, 0.35);
+      text-align: center;
+    }
+
+    /* ── ACCOMMODATION FOOTER NOTE ── */
+    .accom-footer-note {
+      border-top: 1px solid var(--bone);
+      padding: 2rem 0 5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .accom-footer-note-text {
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      color: rgba(44, 26, 8, 0.45);
+      font-weight: 300;
+      font-style: italic;
+      flex: 1;
+    }
+    .accom-footer-note-link {
+      font-family: var(--font-mono);
+      font-size: 0.52rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ochre);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+    .accom-footer-note-link:hover { color: var(--sienna); }
 
     /* ============================================================
        PLACEHOLDER SECTIONS
@@ -879,7 +1262,7 @@
     }
 
     /* ============================================================
-       FOOTER — minimal until Session 7
+       FOOTER
     ============================================================ */
     footer {
       background: var(--earth-deep);
@@ -924,7 +1307,6 @@
       .hero-ctas { flex-direction: column; width: 100%; }
       .btn-primary, .btn-ghost { justify-content: center; width: 100%; font-size: 0.78rem; }
       .hero-scroll { display: none; }
-
       .hero-stat { padding: 0.85rem 0.75rem; }
       .hero-stat-num { font-size: 1.5rem; }
       .hero-stat-label { font-size: 0.58rem; }
@@ -947,38 +1329,64 @@
       .about-value-desc { font-size: 0.9rem; }
       .about-footer-line { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
       .about-footer-quote { font-size: 1.05rem; }
+
+      /* Accommodation mobile */
+      #accommodation { padding: 4rem 1.5rem 0; }
+      .accom-heading { font-size: clamp(2rem, 8vw, 2.8rem); }
+      .accom-tab { padding: 0.75rem 1.1rem; font-size: 0.56rem; }
+      .manyatta-num { font-size: 2.8rem; }
+      .manyatta-footer { flex-direction: column; align-items: flex-start; }
+      .manyatta-cta { width: 100%; justify-content: center; }
+      .camping-capacity { font-size: 2.2rem; }
+      .camping-overlay { padding: 1.5rem; }
+      .camping-cta-primary { width: 100%; }
+      .accom-footer-note { flex-direction: column; align-items: flex-start; }
     }
 
     @media (max-width: 480px) {
       .hero-h1 { font-size: clamp(2.2rem, 12vw, 3rem); }
     }
 
-    /* About desktop two-column layout */
     @media (min-width: 900px) {
-      .about-top {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 5rem;
-        align-items: start;
-      }
-      .about-top-left { /* heading stays left */ }
-      .about-top-right { padding-top: 0.5rem; }
+      /* About two-column */
+      .about-top { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
       .about-body { max-width: 100%; }
       .about-etymology { max-width: 100%; }
       .about-values { grid-template-columns: repeat(4, 1fr); }
+
+      /* Rooms three-column */
+      .rooms-grid { grid-template-columns: repeat(3, 1fr); }
+
+      /* Manyattas two-column alternating */
+      .manyatta-card {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3.5rem;
+        align-items: start;
+        padding: 3rem 0;
+      }
+      .manyatta-card:first-child { padding-top: 0; }
+      .manyatta-img { margin-bottom: 0; }
+      .manyatta-card:nth-child(even) .manyatta-img { order: 2; }
+      .manyatta-card:nth-child(even) .manyatta-body { order: 1; }
+
+      /* Camping two-column body */
+      .camping-body { grid-template-columns: 1fr 1fr; gap: 3rem; }
+      .camping-cta-group { flex-direction: row; align-items: center; }
+      .camping-cta-primary { flex: 1; }
+    }
+
+    @media (min-width: 900px) and (max-width: 1100px) {
+      .rooms-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
 <body>
 
   <!-- WHATSAPP FLOAT -->
-  <a
-    class="whatsapp-float"
+  <a class="whatsapp-float"
     href="https://wa.me/254700000000?text=Hello%20Enkang%20Sidai%2C%20I%20would%20like%20to%20enquire%20about%20a%20booking."
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Chat with us on WhatsApp"
-  >
+    target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
       <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.526 5.845L0 24l6.338-1.502A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.371l-.36-.214-3.726.883.938-3.618-.234-.372A9.818 9.818 0 1112 21.818z"/>
@@ -1024,50 +1432,27 @@
       <div class="hero-hills"></div>
       <div class="hero-ground"></div>
     </div>
-
     <div class="hero-content">
       <div class="hero-eyebrow">Ewuaso Kedong · Kenya</div>
-      <h1 class="hero-h1">
-        An Oasis<br>
-        <em>Where the Wild Begins</em>
-      </h1>
-      <p class="hero-sub">
-        A Maasai-inspired sanctuary where the land breathes, the stars fill the sky,
-        and every moment is unhurried. Just 1.5 hours from Nairobi.
-      </p>
+      <h1 class="hero-h1">An Oasis<br><em>Where the Wild Begins</em></h1>
+      <p class="hero-sub">A Maasai-inspired sanctuary where the land breathes, the stars fill the sky, and every moment is unhurried. Just 1.5 hours from Nairobi.</p>
       <div class="hero-ctas">
         <a href="#contact" class="btn-primary">
           <span>Reserve Your Stay</span>
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
         <a href="#experiences" class="btn-ghost">Explore Experiences</a>
       </div>
     </div>
-
     <div class="hero-scroll" aria-hidden="true">
       <span class="hero-scroll-text">Discover</span>
       <div class="hero-scroll-line"></div>
     </div>
-
     <div class="hero-stats" role="list">
-      <div class="hero-stat" role="listitem">
-        <div class="hero-stat-num">3</div>
-        <div class="hero-stat-label">Maasai Manyattas</div>
-      </div>
-      <div class="hero-stat" role="listitem">
-        <div class="hero-stat-num">5</div>
-        <div class="hero-stat-label">Resort Rooms</div>
-      </div>
-      <div class="hero-stat" role="listitem">
-        <div class="hero-stat-num">25</div>
-        <div class="hero-stat-label">Camping Guests</div>
-      </div>
-      <div class="hero-stat" role="listitem">
-        <div class="hero-stat-num">1.5h</div>
-        <div class="hero-stat-label">From Nairobi</div>
-      </div>
+      <div class="hero-stat" role="listitem"><div class="hero-stat-num">3</div><div class="hero-stat-label">Maasai Manyattas</div></div>
+      <div class="hero-stat" role="listitem"><div class="hero-stat-num">5</div><div class="hero-stat-label">Resort Rooms</div></div>
+      <div class="hero-stat" role="listitem"><div class="hero-stat-num">25</div><div class="hero-stat-label">Camping Guests</div></div>
+      <div class="hero-stat" role="listitem"><div class="hero-stat-num">1.5h</div><div class="hero-stat-label">From Nairobi</div></div>
     </div>
   </section>
 
@@ -1078,19 +1463,13 @@
     <div class="marquee-track" id="marqueeTrack"></div>
   </div>
 
-  <!-- ABOUT / STORY -->
+  <!-- ABOUT -->
   <section id="about" aria-labelledby="about-heading">
     <div class="about-inner">
-
       <div class="about-top">
         <div class="about-top-left reveal">
           <div class="section-label">Our Story</div>
-          <h2 class="about-heading" id="about-heading">
-            A sanctuary rooted<br>
-            in <em>land &amp; legacy</em>
-          </h2>
-
-          <!-- Etymology block — lives under heading on mobile, stays left col on desktop -->
+          <h2 class="about-heading" id="about-heading">A sanctuary rooted<br>in <em>land &amp; legacy</em></h2>
           <div class="about-etymology" role="note" aria-label="Meaning of the name Enkang Sidai">
             <div class="about-etymology-line">
               <span class="about-etymology-word">Enkang</span>
@@ -1102,87 +1481,294 @@
             </div>
           </div>
         </div>
-
         <div class="about-top-right reveal reveal-d2">
-          <p class="about-body">
-            Enkang means homestead in Maasai, the heart of community. Sidai means beautiful.
-            Together they describe exactly what this place is.
-          </p>
-          <p class="about-body" style="margin-top: 1.25rem;">
-            Nestled in Ewuaso Kedong, the resort blends authentic Maasai heritage with modern
-            comfort for guests who seek more than a bed, they seek a genuine encounter with land,
-            culture, and stillness.
-          </p>
+          <p class="about-body">Enkang means homestead in Maasai, the heart of community. Sidai means beautiful. Together they describe exactly what this place is.</p>
+          <p class="about-body" style="margin-top: 1.25rem;">Nestled in Ewuaso Kedong, the resort blends authentic Maasai heritage with modern comfort for guests who seek more than a bed, they seek a genuine encounter with land, culture, and stillness.</p>
         </div>
       </div>
-
-      <!-- Four values -->
       <div class="about-values" role="list" aria-label="What defines Enkang Sidai">
-
         <div class="about-value reveal reveal-d1" role="listitem">
-          <!-- Nature icon: leaf/plant -->
-          <svg class="about-value-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M18 32V14"/>
-            <path d="M18 14C18 14 10 12 7 5c7 0 13 4 11 9"/>
-            <path d="M18 20C18 20 26 18 29 11c-7 0-13 4-11 9"/>
-            <path d="M12 26c2-2 4-3 6-3"/>
-          </svg>
+          <svg class="about-value-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 32V14"/><path d="M18 14C18 14 10 12 7 5c7 0 13 4 11 9"/><path d="M18 20C18 20 26 18 29 11c-7 0-13 4-11 9"/><path d="M12 26c2-2 4-3 6-3"/></svg>
           <div class="about-value-title">Nature</div>
           <p class="about-value-desc">Open savannah, fresh air, and undisturbed ecosystems — the land here is alive in ways the city has forgotten.</p>
         </div>
-
         <div class="about-value reveal reveal-d2" role="listitem">
-          <!-- Culture icon: shield / Maasai motif -->
-          <svg class="about-value-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M18 4L6 9v10c0 7 6 12 12 13 6-1 12-6 12-13V9L18 4z"/>
-            <path d="M18 14v8M14 16l4-2 4 2"/>
-          </svg>
+          <svg class="about-value-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 4L6 9v10c0 7 6 12 12 13 6-1 12-6 12-13V9L18 4z"/><path d="M18 14v8M14 16l4-2 4 2"/></svg>
           <div class="about-value-title">Culture</div>
           <p class="about-value-desc">Living Maasai traditions woven into every experience, from the welcome to the fire that burns through the night.</p>
         </div>
-
         <div class="about-value reveal reveal-d3" role="listitem">
-          <!-- Rest icon: crescent + dots (stars) -->
-          <svg class="about-value-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M22 7A11 11 0 1 1 11 26 8 8 0 0 0 22 7z"/>
-            <circle cx="27" cy="10" r="0.8" fill="currentColor" stroke="none"/>
-            <circle cx="30" cy="15" r="0.8" fill="currentColor" stroke="none"/>
-            <circle cx="25" cy="18" r="0.8" fill="currentColor" stroke="none"/>
-          </svg>
+          <svg class="about-value-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 7A11 11 0 1 1 11 26 8 8 0 0 0 22 7z"/><circle cx="27" cy="10" r="0.8" fill="currentColor" stroke="none"/><circle cx="30" cy="15" r="0.8" fill="currentColor" stroke="none"/><circle cx="25" cy="18" r="0.8" fill="currentColor" stroke="none"/></svg>
           <div class="about-value-title">Rest</div>
           <p class="about-value-desc">Designed to slow you down, no schedules, no rush. Time moves differently here, and that is entirely the point.</p>
         </div>
-
         <div class="about-value reveal reveal-d4" role="listitem">
-          <!-- Hospitality icon: hands / hearth -->
-          <svg class="about-value-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/>
-            <path d="M7 28c0-6 4.5-9 11-9s11 3 11 9"/>
-            <circle cx="18" cy="10" r="3"/>
-          </svg>
+          <svg class="about-value-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M7 28c0-6 4.5-9 11-9s11 3 11 9"/><circle cx="18" cy="10" r="3"/></svg>
           <div class="about-value-title">Hospitality</div>
           <p class="about-value-desc">Every guest welcomed as family in the true spirit of Enkang, a homestead where no one is a stranger for long.</p>
         </div>
-
       </div>
-
-      <!-- Closing pull-quote -->
       <div class="about-footer-line reveal">
-        <p class="about-footer-quote">
-          "Together, <strong>Enkang Sidai</strong> means exactly what you will find here, a beautiful homestead at the edge of the wild."
-        </p>
+        <p class="about-footer-quote">"Together, <strong>Enkang Sidai</strong> means exactly what you will find here, a beautiful homestead at the edge of the wild."</p>
         <span class="about-footer-attr" aria-hidden="true">Ewuaso Kedong</span>
       </div>
-
     </div>
   </section>
 
   <div class="pattern-divider" aria-hidden="true"></div>
 
-  <div id="accommodation" class="placeholder-section">
-    <h2>Where You Sleep</h2>
-    <p>Session 3 — Rooms, Manyattas &amp; Camping</p>
-  </div>
+  <!-- ACCOMMODATION -->
+  <section id="accommodation" aria-labelledby="accom-heading">
+    <div class="accom-inner">
+
+      <div class="accom-header reveal">
+        <div class="section-label">Where You Sleep</div>
+        <h2 class="accom-heading" id="accom-heading">Three ways to <em>meet the wild</em></h2>
+        <p class="accom-intro">From the warmth of a Maasai manyatta to a modern room with savannah views, every option here is a deliberate encounter with place.</p>
+      </div>
+
+      <div class="accom-tabs" role="tablist" aria-label="Accommodation types">
+        <button class="accom-tab active" role="tab" aria-selected="true"  aria-controls="panel-rooms"     id="tab-rooms">Rooms <span class="accom-tab-count">5</span></button>
+        <button class="accom-tab"        role="tab" aria-selected="false" aria-controls="panel-manyattas" id="tab-manyattas">Manyattas <span class="accom-tab-count">3</span></button>
+        <button class="accom-tab"        role="tab" aria-selected="false" aria-controls="panel-camping"   id="tab-camping">Camping <span class="accom-tab-count">25</span></button>
+      </div>
+
+      <!-- ═══ ROOMS ═══ -->
+      <div class="accom-panel active" id="panel-rooms" role="tabpanel" aria-labelledby="tab-rooms">
+        <div class="rooms-grid">
+
+          <article class="room-card reveal">
+            <div class="room-img"><div class="img-placeholder" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span class="img-placeholder-label">Photo coming soon</span></div></div>
+            <div class="room-body">
+              <div class="room-meta"><span class="room-type">Resort Room</span><span class="room-price">[Price TBC] / night</span></div>
+              <h3 class="room-name">The Olmoran</h3>
+              <p class="room-desc">Named after the open plains that stretch beyond the window. A calm, well-appointed room that lets the landscape do the talking.</p>
+              <div class="room-amenities">
+                <span class="room-amenity"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 9V4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v5"/><path d="M0 9h12"/></svg>En-suite</span>
+                <span class="room-amenity"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 8h8M2 5h8"/></svg>King bed</span>
+                <span class="room-amenity"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 10V5l4-4 4 4v5"/></svg>Savannah view</span>
+                <span class="room-amenity"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="6" cy="5" r="3"/><path d="M1 11c0-3 2-4 5-4s5 1 5 4"/></svg>Wi-Fi</span>
+              </div>
+              <a href="https://wa.me/254700000000?text=Hello%20Enkang%20Sidai%2C%20I%20would%20like%20to%20enquire%20about%20the%20Olmoran%20Room." target="_blank" rel="noopener noreferrer" class="room-cta" aria-label="Enquire about The Olmoran via WhatsApp">
+                Enquire via WhatsApp
+                <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="room-card reveal reveal-d1">
+            <div class="room-img"><div class="img-placeholder" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span class="img-placeholder-label">Photo coming soon</span></div></div>
+            <div class="room-body">
+              <div class="room-meta"><span class="room-type">Resort Room</span><span class="room-price">[Price TBC] / night</span></div>
+              <h3 class="room-name">The Enkiama</h3>
+              <p class="room-desc">Enkiama means a place of shelter. This room earns that name — generous proportions, warm tones, and a stillness that arrives with the evening light.</p>
+              <div class="room-amenities">
+                <span class="room-amenity"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 9V4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v5"/><path d="M0 9h12"/></svg>En-suite</span>
+                <span class="room-amenity"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 8h8M2 5h8"/></svg>King bed</span>
+                <span class="room-amenity"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 10V5l4-4 4 4v5"/></svg>Garden view</span>
+                <span class="room-amenity"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="6" cy="5" r="3"/><path d="M1 11c0-3 2-4 5-4s5 1 5 4"/></svg>Wi-Fi</span>
+              </div>
+              <a href="https://wa.me/254700000000?text=Hello%20Enkang%20Sidai%2C%20I%20would%20like%20to%20enquire%20about%20the%20Enkiama%20Room." target="_blank" rel="noopener noreferrer" class="room-cta" aria-label="Enquire about The Enkiama via WhatsApp">
+                Enquire via WhatsApp
+                <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="room-card reveal reveal-d2">
+            <div class="room-img"><div class="img-placeholder" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span class="img-placeholder-label">Photo coming soon</span></div></div>
+            <div class="room-body">
+              <div class="room-meta"><span class="room-type">Resort Room</span><span class="room-price">[Price TBC] / night</span></div>
+              <h3 class="room-name">The Laikipia</h3>
+              <p class="room-desc">Named for the plateau country to the north. High ceilings, cool air, and a sense of altitude even when you are resting at ground level.</p>
+              <div class="room-amenities">
+                <span class="room-amenity"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 9V4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v5"/><path d="M0 9h12"/></svg>En-suite</span>
+                <span class="room-amenity"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 8h8M2 5h8"/></svg>Twin beds</span>
+                <span class="room-amenity"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 10V5l4-4 4 4v5"/></svg>Courtyard view</span>
+                <span class="room-amenity"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="6" cy="5" r="3"/><path d="M1 11c0-3 2-4 5-4s5 1 5 4"/></svg>Wi-Fi</span>
+              </div>
+              <a href="https://wa.me/254700000000?text=Hello%20Enkang%20Sidai%2C%20I%20would%20like%20to%20enquire%20about%20the%20Laikipia%20Room." target="_blank" rel="noopener noreferrer" class="room-cta" aria-label="Enquire about The Laikipia via WhatsApp">
+                Enquire via WhatsApp
+                <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="room-card reveal reveal-d1">
+            <div class="room-img"><div class="img-placeholder" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span class="img-placeholder-label">Photo coming soon</span></div></div>
+            <div class="room-body">
+              <div class="room-meta"><span class="room-type">Resort Room</span><span class="room-price">[Price TBC] / night</span></div>
+              <h3 class="room-name">The Amboseli</h3>
+              <p class="room-desc">The great dusty plains that Kilimanjaro watches over. This room carries that grandeur — quiet authority and natural light in generous supply.</p>
+              <div class="room-amenities">
+                <span class="room-amenity"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 9V4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v5"/><path d="M0 9h12"/></svg>En-suite</span>
+                <span class="room-amenity"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 8h8M2 5h8"/></svg>Queen bed</span>
+                <span class="room-amenity"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 10V5l4-4 4 4v5"/></svg>Mountain view</span>
+                <span class="room-amenity"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="6" cy="5" r="3"/><path d="M1 11c0-3 2-4 5-4s5 1 5 4"/></svg>Wi-Fi</span>
+              </div>
+              <a href="https://wa.me/254700000000?text=Hello%20Enkang%20Sidai%2C%20I%20would%20like%20to%20enquire%20about%20the%20Amboseli%20Room." target="_blank" rel="noopener noreferrer" class="room-cta" aria-label="Enquire about The Amboseli via WhatsApp">
+                Enquire via WhatsApp
+                <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="room-card reveal reveal-d2">
+            <div class="room-img"><div class="img-placeholder" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span class="img-placeholder-label">Photo coming soon</span></div></div>
+            <div class="room-body">
+              <div class="room-meta"><span class="room-type">Resort Room</span><span class="room-price">[Price TBC] / night</span></div>
+              <h3 class="room-name">The Kedong</h3>
+              <p class="room-desc">Named for the valley the resort calls home. The most connected room to the land — morning birdsong arrives before any alarm clock ever could.</p>
+              <div class="room-amenities">
+                <span class="room-amenity"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 9V4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v5"/><path d="M0 9h12"/></svg>En-suite</span>
+                <span class="room-amenity"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 8h8M2 5h8"/></svg>King bed</span>
+                <span class="room-amenity"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 10V5l4-4 4 4v5"/></svg>Valley view</span>
+                <span class="room-amenity"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="6" cy="5" r="3"/><path d="M1 11c0-3 2-4 5-4s5 1 5 4"/></svg>Wi-Fi</span>
+              </div>
+              <a href="https://wa.me/254700000000?text=Hello%20Enkang%20Sidai%2C%20I%20would%20like%20to%20enquire%20about%20the%20Kedong%20Room." target="_blank" rel="noopener noreferrer" class="room-cta" aria-label="Enquire about The Kedong via WhatsApp">
+                Enquire via WhatsApp
+                <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div><!-- /panel-rooms -->
+
+      <!-- ═══ MANYATTAS ═══ -->
+      <div class="accom-panel" id="panel-manyattas" role="tabpanel" aria-labelledby="tab-manyattas">
+        <div class="manyattas-grid">
+
+          <article class="manyatta-card reveal">
+            <div class="manyatta-img"><div class="img-placeholder" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span class="img-placeholder-label">Photo coming soon</span></div></div>
+            <div class="manyatta-body">
+              <span class="manyatta-num" aria-hidden="true">01</span>
+              <div class="manyatta-sub">Maasai Manyatta</div>
+              <h3 class="manyatta-name">Enkare</h3>
+              <div class="manyatta-meaning">Meaning: Water — the source of life</div>
+              <p class="manyatta-desc">The first manyatta at the edge of the compound, where the land opens and the air carries the cool memory of the river. Built in the traditional Maasai circular form, Enkare is both intimate and grounding — a return to something essential.</p>
+              <ul class="manyatta-features" aria-label="Features">
+                <li>Traditional circular construction with thatched roof</li>
+                <li>Hand-finished interior with local materials</li>
+                <li>Private outdoor seating area</li>
+                <li>En-suite facilities</li>
+                <li>Morning fire ritual on request</li>
+              </ul>
+              <div class="manyatta-footer">
+                <span class="manyatta-price">[Price TBC] / night</span>
+                <a href="https://wa.me/254700000000?text=Hello%20Enkang%20Sidai%2C%20I%20would%20like%20to%20enquire%20about%20the%20Enkare%20Manyatta." target="_blank" rel="noopener noreferrer" class="manyatta-cta" aria-label="Enquire about Enkare Manyatta via WhatsApp">
+                  Enquire via WhatsApp
+                  <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="manyatta-card reveal reveal-d1">
+            <div class="manyatta-img"><div class="img-placeholder" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span class="img-placeholder-label">Photo coming soon</span></div></div>
+            <div class="manyatta-body">
+              <span class="manyatta-num" aria-hidden="true">02</span>
+              <div class="manyatta-sub">Maasai Manyatta</div>
+              <h3 class="manyatta-name">Osotua</h3>
+              <div class="manyatta-meaning">Meaning: Bond of friendship — a sacred trust</div>
+              <p class="manyatta-desc">In Maasai culture, osotua is the deepest form of relationship — one that asks nothing and gives everything. This manyatta carries that spirit. Guests here often report feeling not like visitors, but like they belong. That is entirely intentional.</p>
+              <ul class="manyatta-features" aria-label="Features">
+                <li>Traditional circular construction with thatched roof</li>
+                <li>Couples-optimised layout with central bed</li>
+                <li>Private outdoor seating with fire pit</li>
+                <li>En-suite facilities</li>
+                <li>Cultural welcome ceremony on arrival</li>
+              </ul>
+              <div class="manyatta-footer">
+                <span class="manyatta-price">[Price TBC] / night</span>
+                <a href="https://wa.me/254700000000?text=Hello%20Enkang%20Sidai%2C%20I%20would%20like%20to%20enquire%20about%20the%20Osotua%20Manyatta." target="_blank" rel="noopener noreferrer" class="manyatta-cta" aria-label="Enquire about Osotua Manyatta via WhatsApp">
+                  Enquire via WhatsApp
+                  <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="manyatta-card reveal reveal-d2">
+            <div class="manyatta-img"><div class="img-placeholder" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span class="img-placeholder-label">Photo coming soon</span></div></div>
+            <div class="manyatta-body">
+              <span class="manyatta-num" aria-hidden="true">03</span>
+              <div class="manyatta-sub">Maasai Manyatta</div>
+              <h3 class="manyatta-name">Sapuk</h3>
+              <div class="manyatta-meaning">Meaning: High place — where perspective returns</div>
+              <p class="manyatta-desc">The manyatta positioned at the highest point of the compound, where the horizon arrives uninterrupted. On clear evenings the stars feel close enough to reach. Sapuk is for guests who came specifically to remember what silence sounds like.</p>
+              <ul class="manyatta-features" aria-label="Features">
+                <li>Traditional circular construction with thatched roof</li>
+                <li>Elevated position with panoramic views</li>
+                <li>Dedicated stargazing deck</li>
+                <li>En-suite facilities</li>
+                <li>Sundowner setup available on request</li>
+              </ul>
+              <div class="manyatta-footer">
+                <span class="manyatta-price">[Price TBC] / night</span>
+                <a href="https://wa.me/254700000000?text=Hello%20Enkang%20Sidai%2C%20I%20would%20like%20to%20enquire%20about%20the%20Sapuk%20Manyatta." target="_blank" rel="noopener noreferrer" class="manyatta-cta" aria-label="Enquire about Sapuk Manyatta via WhatsApp">
+                  Enquire via WhatsApp
+                  <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div><!-- /panel-manyattas -->
+
+      <!-- ═══ CAMPING ═══ -->
+      <div class="accom-panel camping-panel" id="panel-camping" role="tabpanel" aria-labelledby="tab-camping">
+
+        <div class="camping-hero reveal">
+          <div class="camping-img">
+            <div class="img-placeholder" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 20 2 20"/></svg>
+              <span class="img-placeholder-label">Campsite photo coming soon</span>
+            </div>
+          </div>
+          <div class="camping-overlay">
+            <div class="camping-capacity">20–25</div>
+            <div class="camping-capacity-label">Guests · Open campsite under the stars</div>
+          </div>
+        </div>
+
+        <div class="camping-body reveal reveal-d1">
+          <div>
+            <p class="camping-desc">The campsite at Enkang Sidai is not a compromise. It is a choice — made by people who know that the best ceiling in Kenya costs nothing and requires only darkness and patience.</p>
+            <p class="camping-desc" style="margin-top: 1.25rem;">The site accommodates up to 25 guests and is particularly suited to group bookings: school expeditions, corporate team retreats, family gatherings, and travel groups. Campfire, community, and sky.</p>
+            <div class="camping-cta-group">
+              <a href="https://wa.me/254700000000?text=Hello%20Enkang%20Sidai%2C%20I%20would%20like%20to%20enquire%20about%20a%20camping%20booking." target="_blank" rel="noopener noreferrer" class="camping-cta-primary" aria-label="Enquire about camping via WhatsApp">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.526 5.845L0 24l6.338-1.502A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.371l-.36-.214-3.726.883.938-3.618-.234-.372A9.818 9.818 0 1112 21.818z"/></svg>
+                Enquire via WhatsApp
+              </a>
+              <span class="camping-cta-note">Group rates available · [Price TBC] per person / night</span>
+            </div>
+          </div>
+          <div class="camping-includes">
+            <div class="camping-includes-title">What's included</div>
+            <ul class="camping-includes-list">
+              <li>Designated tent pitching area with level ground</li>
+              <li>Shared ablution block with running water</li>
+              <li>Communal campfire with firewood provided</li>
+              <li>Access to resort restaurant and bar</li>
+              <li>Security throughout the night</li>
+              <li>Morning tea and coffee service</li>
+              <li>Cultural evening programme on request</li>
+            </ul>
+          </div>
+        </div>
+
+      </div><!-- /panel-camping -->
+
+      <div class="accom-footer-note reveal">
+        <p class="accom-footer-note-text">All rates are per night. Pricing and availability confirmed on enquiry. Corporate and group rates available on request.</p>
+        <a href="https://wa.me/254700000000?text=Hello%20Enkang%20Sidai%2C%20I%20have%20a%20general%20enquiry%20about%20accommodation." target="_blank" rel="noopener noreferrer" class="accom-footer-note-link">General enquiry →</a>
+      </div>
+
+    </div><!-- /accom-inner -->
+  </section>
+
   <div class="pattern-divider" aria-hidden="true"></div>
 
   <div id="experiences" class="placeholder-section">
@@ -1209,13 +1795,11 @@
   </div>
   <div class="pattern-divider" aria-hidden="true"></div>
 
-  <!-- FOOTER -->
   <footer>
     <span class="footer-logo">Enkang Sidai Resort</span>
     <a href="#" class="footer-credit">[Your Agency Name] — Web Design &amp; Development</a>
   </footer>
 
-  <!-- JAVASCRIPT -->
   <script>
     // NAV SCROLL
     const nav = document.getElementById('nav');
@@ -1226,27 +1810,20 @@
     // MOBILE MENU
     const hamburger = document.getElementById('hamburger');
     const drawer    = document.getElementById('navDrawer');
-
     hamburger.addEventListener('click', () => {
       const isOpen = drawer.classList.toggle('open');
       hamburger.classList.toggle('open', isOpen);
       hamburger.setAttribute('aria-expanded', isOpen);
       document.body.style.overflow = isOpen ? 'hidden' : '';
     });
-
     function closeMenu() {
       drawer.classList.remove('open');
       hamburger.classList.remove('open');
       hamburger.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
     }
-
     document.addEventListener('click', (e) => {
-      if (drawer.classList.contains('open') &&
-          !drawer.contains(e.target) &&
-          !hamburger.contains(e.target)) {
-        closeMenu();
-      }
+      if (drawer.classList.contains('open') && !drawer.contains(e.target) && !hamburger.contains(e.target)) closeMenu();
     });
 
     // STARS
@@ -1257,15 +1834,7 @@
       const size  = Math.random() * 1.8 + 0.4;
       const minOp = (Math.random() * 0.15 + 0.05).toFixed(2);
       const maxOp = (Math.random() * 0.5  + 0.4).toFixed(2);
-      star.style.cssText = `
-        width:${size}px; height:${size}px;
-        left:${Math.random() * 100}%;
-        top:${Math.random() * 72}%;
-        --dur:${(Math.random() * 3 + 2).toFixed(1)}s;
-        --delay:${(Math.random() * 4).toFixed(1)}s;
-        --min-op:${minOp}; --max-op:${maxOp};
-        opacity:${minOp};
-      `;
+      star.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*72}%;--dur:${(Math.random()*3+2).toFixed(1)}s;--delay:${(Math.random()*4).toFixed(1)}s;--min-op:${minOp};--max-op:${maxOp};opacity:${minOp};`;
       starsContainer.appendChild(star);
     }
 
@@ -1275,27 +1844,16 @@
       const ember = document.createElement('div');
       ember.className = 'ember';
       const size = Math.random() * 2.5 + 0.8;
-      ember.style.cssText = `
-        width:${size}px; height:${size}px;
-        left:${35 + Math.random() * 30}%;
-        bottom:${8 + Math.random() * 8}%;
-        --dur:${(Math.random() * 3 + 2.5).toFixed(1)}s;
-        --delay:0s;
-        --drift:${((Math.random() - 0.5) * 80).toFixed(0)}px;
-      `;
+      ember.style.cssText = `width:${size}px;height:${size}px;left:${35+Math.random()*30}%;bottom:${8+Math.random()*8}%;--dur:${(Math.random()*3+2.5).toFixed(1)}s;--delay:0s;--drift:${((Math.random()-0.5)*80).toFixed(0)}px;`;
       embersContainer.appendChild(ember);
       setTimeout(() => ember.remove(), 5500);
     }
     setInterval(spawnEmber, 600);
 
     // MARQUEE
-    const items = [
-      'Maasai Manyattas','Camping Under the Stars','Nature Walks',
-      'Cultural Experiences','Restaurant & Bar','Corporate Retreats',
-      'Photography Expeditions','Family Getaways','Ewuaso, Kenya'
-    ];
+    const items = ['Maasai Manyattas','Camping Under the Stars','Nature Walks','Cultural Experiences','Restaurant & Bar','Corporate Retreats','Photography Expeditions','Family Getaways','Ewuaso, Kenya'];
     const track = document.getElementById('marqueeTrack');
-    [...items, ...items, ...items, ...items].forEach(text => {
+    [...items,...items,...items,...items].forEach(text => {
       const div = document.createElement('div');
       div.className = 'marquee-item';
       div.textContent = text;
@@ -1303,18 +1861,28 @@
     });
 
     // SCROLL REVEAL
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12 }
-    );
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+      });
+    }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ACCOMMODATION TABS
+    const tabs   = document.querySelectorAll('.accom-tab');
+    const panels = document.querySelectorAll('.accom-panel');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+        panels.forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected','true');
+        const panel = document.getElementById(tab.getAttribute('aria-controls'));
+        panel.classList.add('active');
+        // Trigger reveal on cards now visible
+        panel.querySelectorAll('.reveal:not(.visible)').forEach(el => setTimeout(() => observer.observe(el), 50));
+      });
+    });
   </script>
 
 </body>
