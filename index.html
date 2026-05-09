@@ -343,14 +343,6 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      /*
-        PHOTO SLOT — when client photos arrive:
-        background-image: url('images/hero.webp');
-        background-size: cover;
-        background-position: center;
-        Then add a dark overlay on top.
-        Until then, the gradient below is the intentional design.
-      */
       background: linear-gradient(
         168deg,
         #0D0801 0%,
@@ -651,6 +643,211 @@
     .whatsapp-float:hover::before { opacity: 1; }
 
     /* ============================================================
+       ABOUT / STORY SECTION
+    ============================================================ */
+    #about {
+      background: var(--cream-warm);
+      padding: 6rem 5vw 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle background texture — acacia silhouette via CSS */
+    #about::before {
+      content: '';
+      position: absolute;
+      right: -6%;
+      top: -5%;
+      width: min(520px, 80vw);
+      height: min(520px, 80vw);
+      border-radius: 50%;
+      background: radial-gradient(
+        ellipse at 60% 40%,
+        rgba(212, 129, 58, 0.06) 0%,
+        rgba(74, 92, 42, 0.04) 50%,
+        transparent 75%
+      );
+      pointer-events: none;
+    }
+    #about::after {
+      content: '';
+      position: absolute;
+      left: -4%;
+      bottom: 0;
+      width: min(320px, 60vw);
+      height: min(320px, 60vw);
+      border-radius: 50%;
+      background: radial-gradient(
+        ellipse at 40% 60%,
+        rgba(181, 69, 27, 0.05) 0%,
+        transparent 65%
+      );
+      pointer-events: none;
+    }
+
+    .about-inner {
+      position: relative;
+      z-index: 1;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    /* Top row: label + heading + intro */
+    .about-top {
+      margin-bottom: 3.5rem;
+    }
+
+    .about-heading {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 300;
+      line-height: 1.06;
+      color: var(--earth);
+      margin-bottom: 1.75rem;
+      max-width: 680px;
+    }
+    .about-heading em {
+      font-style: italic;
+      color: var(--sienna);
+    }
+
+    .about-body {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: rgba(44, 26, 8, 0.72);
+      font-weight: 300;
+      max-width: 580px;
+    }
+
+    /* Name etymology pull-quote */
+    .about-etymology {
+      margin: 2.5rem 0 0;
+      padding: 1.5rem 1.75rem;
+      border-left: 3px solid var(--ochre);
+      background: rgba(212, 129, 58, 0.06);
+      border-radius: 0 4px 4px 0;
+      max-width: 480px;
+    }
+    .about-etymology-line {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+    .about-etymology-line:last-child { margin-bottom: 0; }
+    .about-etymology-word {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-style: italic;
+      font-weight: 600;
+      color: var(--ochre);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .about-etymology-meaning {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(44, 26, 8, 0.5);
+    }
+
+    /* Values grid */
+    .about-values {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--bone);
+      border: 1px solid var(--bone);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 3.5rem;
+    }
+
+    .about-value {
+      background: var(--cream-warm);
+      padding: 2rem 1.75rem;
+      position: relative;
+      transition: background 0.3s var(--ease-out);
+    }
+    .about-value:hover {
+      background: var(--cream);
+    }
+
+    .about-value-icon {
+      width: 36px;
+      height: 36px;
+      margin-bottom: 1.1rem;
+      color: var(--ochre);
+      flex-shrink: 0;
+    }
+
+    .about-value-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--earth);
+      margin-bottom: 0.6rem;
+      line-height: 1.2;
+    }
+
+    .about-value-desc {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      line-height: 1.75;
+      color: rgba(44, 26, 8, 0.6);
+      font-weight: 300;
+    }
+
+    /* Accent corner mark on each value card */
+    .about-value::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 0; height: 0;
+      border-style: solid;
+      border-width: 0 20px 20px 0;
+      border-color: transparent var(--bone) transparent transparent;
+      transition: border-color 0.3s;
+    }
+    .about-value:hover::after {
+      border-color: transparent var(--ochre) transparent transparent;
+    }
+
+    /* Sidai meaning pull-line at the bottom */
+    .about-footer-line {
+      margin-top: 3.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--bone);
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .about-footer-quote {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 3vw, 1.4rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--earth);
+      line-height: 1.4;
+    }
+    .about-footer-quote strong {
+      font-weight: 600;
+      color: var(--sienna);
+    }
+    .about-footer-attr {
+      font-family: var(--font-mono);
+      font-size: 0.52rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ochre);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* ============================================================
        PLACEHOLDER SECTIONS
     ============================================================ */
     .placeholder-section {
@@ -736,10 +933,39 @@
       .whatsapp-float::before { display: none; }
 
       footer { flex-direction: column; gap: 0.75rem; text-align: center; }
+
+      /* About mobile */
+      #about { padding: 4rem 1.5rem 3.5rem; }
+      .about-heading { font-size: clamp(2rem, 8vw, 2.8rem); }
+      .about-body { font-size: 1rem; }
+      .about-etymology { max-width: 100%; }
+      .about-etymology-word { font-size: 1.2rem; }
+      .about-etymology-meaning { font-size: 0.58rem; }
+      .about-values { grid-template-columns: 1fr; }
+      .about-value { padding: 1.75rem 1.5rem; }
+      .about-value-title { font-size: 1.15rem; }
+      .about-value-desc { font-size: 0.9rem; }
+      .about-footer-line { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+      .about-footer-quote { font-size: 1.05rem; }
     }
 
     @media (max-width: 480px) {
       .hero-h1 { font-size: clamp(2.2rem, 12vw, 3rem); }
+    }
+
+    /* About desktop two-column layout */
+    @media (min-width: 900px) {
+      .about-top {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        align-items: start;
+      }
+      .about-top-left { /* heading stays left */ }
+      .about-top-right { padding-top: 0.5rem; }
+      .about-body { max-width: 100%; }
+      .about-etymology { max-width: 100%; }
+      .about-values { grid-template-columns: repeat(4, 1fr); }
     }
   </style>
 </head>
@@ -852,16 +1078,111 @@
     <div class="marquee-track" id="marqueeTrack"></div>
   </div>
 
-  <!-- PLACEHOLDER SECTIONS — replaced session by session -->
-  <div id="about" class="placeholder-section">
-    <h2>Our Story</h2>
-    <p>Session 2 — Coming next</p>
-  </div>
+  <!-- ABOUT / STORY -->
+  <section id="about" aria-labelledby="about-heading">
+    <div class="about-inner">
+
+      <div class="about-top">
+        <div class="about-top-left reveal">
+          <div class="section-label">Our Story</div>
+          <h2 class="about-heading" id="about-heading">
+            A sanctuary rooted<br>
+            in <em>land &amp; legacy</em>
+          </h2>
+
+          <!-- Etymology block — lives under heading on mobile, stays left col on desktop -->
+          <div class="about-etymology" role="note" aria-label="Meaning of the name Enkang Sidai">
+            <div class="about-etymology-line">
+              <span class="about-etymology-word">Enkang</span>
+              <span class="about-etymology-meaning">Maasai · homestead · heart of community</span>
+            </div>
+            <div class="about-etymology-line">
+              <span class="about-etymology-word">Sidai</span>
+              <span class="about-etymology-meaning">Maasai · beautiful · as it should be</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-top-right reveal reveal-d2">
+          <p class="about-body">
+            Enkang means homestead in Maasai — the heart of community. Sidai means beautiful.
+            Together they describe exactly what this place is.
+          </p>
+          <p class="about-body" style="margin-top: 1.25rem;">
+            Nestled in Ewuaso Kendong, the resort blends authentic Maasai heritage with modern
+            comfort for guests who seek more than a bed — they seek a genuine encounter with land,
+            culture, and stillness.
+          </p>
+        </div>
+      </div>
+
+      <!-- Four values -->
+      <div class="about-values" role="list" aria-label="What defines Enkang Sidai">
+
+        <div class="about-value reveal reveal-d1" role="listitem">
+          <!-- Nature icon: leaf/plant -->
+          <svg class="about-value-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 32V14"/>
+            <path d="M18 14C18 14 10 12 7 5c7 0 13 4 11 9"/>
+            <path d="M18 20C18 20 26 18 29 11c-7 0-13 4-11 9"/>
+            <path d="M12 26c2-2 4-3 6-3"/>
+          </svg>
+          <div class="about-value-title">Nature</div>
+          <p class="about-value-desc">Open savannah, fresh air, and undisturbed ecosystems — the land here is alive in ways the city has forgotten.</p>
+        </div>
+
+        <div class="about-value reveal reveal-d2" role="listitem">
+          <!-- Culture icon: shield / Maasai motif -->
+          <svg class="about-value-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 4L6 9v10c0 7 6 12 12 13 6-1 12-6 12-13V9L18 4z"/>
+            <path d="M18 14v8M14 16l4-2 4 2"/>
+          </svg>
+          <div class="about-value-title">Culture</div>
+          <p class="about-value-desc">Living Maasai traditions woven into every experience — from the welcome to the fire that burns through the night.</p>
+        </div>
+
+        <div class="about-value reveal reveal-d3" role="listitem">
+          <!-- Rest icon: crescent + dots (stars) -->
+          <svg class="about-value-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 7A11 11 0 1 1 11 26 8 8 0 0 0 22 7z"/>
+            <circle cx="27" cy="10" r="0.8" fill="currentColor" stroke="none"/>
+            <circle cx="30" cy="15" r="0.8" fill="currentColor" stroke="none"/>
+            <circle cx="25" cy="18" r="0.8" fill="currentColor" stroke="none"/>
+          </svg>
+          <div class="about-value-title">Rest</div>
+          <p class="about-value-desc">Designed to slow you down — no schedules, no rush. Time moves differently here, and that is entirely the point.</p>
+        </div>
+
+        <div class="about-value reveal reveal-d4" role="listitem">
+          <!-- Hospitality icon: hands / hearth -->
+          <svg class="about-value-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/>
+            <path d="M7 28c0-6 4.5-9 11-9s11 3 11 9"/>
+            <circle cx="18" cy="10" r="3"/>
+          </svg>
+          <div class="about-value-title">Hospitality</div>
+          <p class="about-value-desc">Every guest welcomed as family in the true spirit of Enkang — a homestead where no one is a stranger for long.</p>
+        </div>
+
+      </div>
+
+      <!-- Closing pull-quote -->
+      <div class="about-footer-line reveal">
+        <p class="about-footer-quote">
+          "Together, <strong>Enkang Sidai</strong> means exactly what you will find here —
+          a beautiful homestead at the edge of the wild."
+        </p>
+        <span class="about-footer-attr" aria-hidden="true">Ewuaso Kendong</span>
+      </div>
+
+    </div>
+  </section>
+
   <div class="pattern-divider" aria-hidden="true"></div>
 
   <div id="accommodation" class="placeholder-section">
     <h2>Where You Sleep</h2>
-    <p>Session 3 — Rooms, Manyattas & Camping</p>
+    <p>Session 3 — Rooms, Manyattas &amp; Camping</p>
   </div>
   <div class="pattern-divider" aria-hidden="true"></div>
 
@@ -872,7 +1193,7 @@
   <div class="pattern-divider" aria-hidden="true"></div>
 
   <div id="restaurant" class="placeholder-section">
-    <h2>Restaurant & Bar</h2>
+    <h2>Restaurant &amp; Bar</h2>
     <p>Session 5 — Coming soon</p>
   </div>
   <div class="pattern-divider" aria-hidden="true"></div>
@@ -892,7 +1213,7 @@
   <!-- FOOTER -->
   <footer>
     <span class="footer-logo">Enkang Sidai Resort</span>
-    <a href="#" class="footer-credit">[Your Agency Name] — Web Design & Development</a>
+    <a href="#" class="footer-credit">[Your Agency Name] — Web Design &amp; Development</a>
   </footer>
 
   <!-- JAVASCRIPT -->
