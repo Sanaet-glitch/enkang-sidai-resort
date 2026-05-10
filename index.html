@@ -737,31 +737,39 @@
       max-width: 520px;
     }
 
-    /* ── TABS ──
-       Desktop: normal row, no scroll needed.
-       Mobile: scrollable, with right-fade gradient to signal more content.
-       The fade is achieved via a pseudo-element on .accom-tabs-wrap.
+    /* ── PILL TAB CONTROL ──
+       The tab row is now a segmented control:
+       - Bone background container with border-radius signals it is interactive
+       - Active tab gets an ochre-tinted filled pill
+       - Inactive tabs respond to hover with a light background
+       - The whole thing scrolls horizontally on mobile if needed
     */
     .accom-tabs-wrap {
-      position: relative;
       margin-bottom: 3rem;
+      /* overflow wrapper for mobile scroll + right-fade */
+      position: relative;
     }
-    /* Right-edge fade on mobile — signals scrollability */
+    /* Right-edge fade — signals scrollability on mobile.
+       JS adds .no-fade when fully scrolled or not needed. */
     .accom-tabs-wrap::after {
       content: '';
       position: absolute;
       top: 0; right: 0; bottom: 0;
-      width: 3rem;
+      width: 2.5rem;
       background: linear-gradient(to right, transparent, var(--cream));
       pointer-events: none;
-      /* Only visible when tabs overflow — JS toggles .no-fade when fully scrolled */
+      border-radius: 0 40px 40px 0;
       transition: opacity 0.3s;
     }
     .accom-tabs-wrap.no-fade::after { opacity: 0; }
 
     .accom-tabs {
-      display: flex;
-      border-bottom: 1px solid var(--bone);
+      display: inline-flex;           /* shrink-wrap to content */
+      min-width: 100%;                /* but never narrower than container */
+      gap: 0.25rem;
+      padding: 0.3rem;
+      background: var(--bone);
+      border-radius: 40px;            /* full pill container */
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
@@ -771,45 +779,50 @@
     .accom-tab {
       font-family: var(--font-mono);
       font-size: 0.6rem;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba(44, 26, 8, 0.4);
-      padding: 0.85rem 1.5rem;
+      color: rgba(44, 26, 8, 0.5);
+      padding: 0.7rem 1.4rem;
       border: none;
-      background: none;
+      background: transparent;
       cursor: pointer;
       white-space: nowrap;
-      position: relative;
-      transition: color 0.25s;
-      margin-bottom: -1px;
+      border-radius: 40px;            /* each tab is also pill-shaped */
+      transition: background 0.2s var(--ease-out), color 0.2s;
       flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
     }
-    .accom-tab::after {
-      content: '';
-      position: absolute;
-      bottom: -1px; left: 0; right: 0;
-      height: 2px;
-      background: var(--ochre);
-      transform: scaleX(0);
-      transition: transform 0.3s var(--ease-out);
+    /* Inactive hover — visible response without full active state */
+    .accom-tab:hover:not(.active) {
+      background: rgba(212, 129, 58, 0.1);
+      color: var(--earth);
     }
-    .accom-tab:hover { color: var(--earth); }
-    .accom-tab.active { color: var(--earth); }
-    .accom-tab.active::after { transform: scaleX(1); }
+    /* Active — filled ochre-tinted pill */
+    .accom-tab.active {
+      background: var(--cream-warm);
+      color: var(--earth);
+      box-shadow: 0 1px 4px rgba(44, 26, 8, 0.12);
+    }
 
     .accom-tab-count {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 16px; height: 16px;
-      border-radius: 50%;
-      background: var(--bone);
+      min-width: 18px;
+      height: 18px;
+      padding: 0 4px;
+      border-radius: 20px;
+      background: rgba(44, 26, 8, 0.1);
       font-size: 0.5rem;
-      margin-left: 0.5rem;
       color: rgba(44, 26, 8, 0.5);
-      transition: background 0.25s, color 0.25s;
+      transition: background 0.2s, color 0.2s;
     }
-    .accom-tab.active .accom-tab-count { background: var(--ochre); color: var(--cream-warm); }
+    .accom-tab.active .accom-tab-count {
+      background: var(--ochre);
+      color: var(--cream-warm);
+    }
 
     .accom-panel { display: none; }
     .accom-panel.active { display: block; }
@@ -838,7 +851,7 @@
       color: rgba(212, 129, 58, 0.5);
     }
 
-    /* ── SHARED CTA BUTTON — used in Rooms and Manyattas ── */
+    /* ── SHARED ENQUIRE BUTTON — Rooms and Manyattas ── */
     .accom-enquire-btn {
       display: flex;
       align-items: center;
@@ -1194,34 +1207,51 @@
       text-align: center;
     }
 
-    /* ── FOOTER NOTE ── */
+    /* ── ACCOMMODATION FOOTER NOTE ──
+       Two-part layout: italic note text on the left,
+       proper outlined button on the right.
+       Button is full-width on mobile, auto-width on desktop.
+    */
     .accom-footer-note {
       border-top: 1px solid var(--bone);
-      padding: 2rem 0 5rem;
+      padding: 2.5rem 0 5rem;
       display: flex;
-      align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap;
+      flex-direction: column;
+      gap: 1.25rem;
     }
     .accom-footer-note-text {
       font-family: var(--font-body);
-      font-size: 0.82rem;
-      color: rgba(44, 26, 8, 0.45);
+      font-size: 0.9rem;
+      color: rgba(44, 26, 8, 0.5);
       font-weight: 300;
       font-style: italic;
-      flex: 1;
+      line-height: 1.7;
     }
-    .accom-footer-note-link {
-      font-family: var(--font-mono);
-      font-size: 0.52rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
+    /* General enquiry — proper outlined button */
+    .accom-general-enquiry-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      width: 100%;
+      background: transparent;
       color: var(--ochre);
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 1rem 1.75rem;
+      border-radius: 2px;
+      border: 1.5px solid var(--ochre);
       text-decoration: none;
-      white-space: nowrap;
-      transition: color 0.2s;
+      transition: background 0.25s var(--ease-out), color 0.25s, gap 0.2s;
     }
-    .accom-footer-note-link:hover { color: var(--sienna); }
+    .accom-general-enquiry-btn:hover {
+      background: var(--ochre);
+      color: var(--cream-warm);
+      gap: 0.9rem;
+    }
+    .accom-general-enquiry-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
 
     /* ============================================================
        PLACEHOLDER SECTIONS
@@ -1327,9 +1357,9 @@
       #accommodation { padding: 4rem 1.5rem 0; }
       .accom-heading { font-size: clamp(2rem, 8vw, 2.8rem); }
 
-      /* Tab row: tighter padding + smaller font on mobile */
-      .accom-tab { padding: 0.75rem 1rem; font-size: 0.56rem; letter-spacing: 0.15em; }
-      .accom-tab-count { width: 15px; height: 15px; font-size: 0.48rem; }
+      /* Tab pill: slightly smaller text on mobile, still fully readable */
+      .accom-tab { font-size: 0.58rem; padding: 0.65rem 1.1rem; letter-spacing: 0.14em; }
+      .accom-tab-count { font-size: 0.48rem; min-width: 16px; height: 16px; }
 
       /* Room card mobile font fixes */
       .room-type  { font-size: 0.62rem; }
@@ -1352,9 +1382,8 @@
       /* Shared enquire button mobile */
       .accom-enquire-btn { font-size: 0.68rem; padding: 1.1rem 1.5rem; }
 
-      /* Footer note mobile */
-      .accom-footer-note { flex-direction: column; align-items: flex-start; }
-      .accom-footer-note-text { font-size: 0.88rem; }
+      /* General enquiry button mobile */
+      .accom-general-enquiry-btn { font-size: 0.68rem; width: 100%; }
     }
 
     @media (max-width: 480px) {
@@ -1386,7 +1415,14 @@
       .camping-cta-group { flex-direction: row; align-items: center; }
       .camping-cta-primary { flex: 1; }
 
-      /* Desktop: enquire button is full width of card, no change needed */
+      /* Desktop: footer note row layout */
+      .accom-footer-note {
+        flex-direction: row;
+        align-items: center;
+        gap: 2rem;
+      }
+      .accom-footer-note-text { flex: 1; }
+      .accom-general-enquiry-btn { width: auto; flex-shrink: 0; }
     }
 
     @media (min-width: 900px) and (max-width: 1100px) {
@@ -1540,7 +1576,7 @@
         <p class="accom-intro">From the warmth of a Maasai manyatta to a modern room with savannah views, every option here is a deliberate encounter with place.</p>
       </div>
 
-      <!-- Tab row wrapped for fade effect -->
+      <!-- Pill tab control -->
       <div class="accom-tabs-wrap" id="accomTabsWrap">
         <div class="accom-tabs" id="accomTabs" role="tablist" aria-label="Accommodation types">
           <button class="accom-tab active" role="tab" aria-selected="true"  aria-controls="panel-rooms"     id="tab-rooms">Rooms <span class="accom-tab-count">5</span></button>
@@ -1565,9 +1601,7 @@
                 <span class="room-amenity"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 10V5l4-4 4 4v5"/></svg>Savannah view</span>
                 <span class="room-amenity"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="6" cy="5" r="3"/><path d="M1 11c0-3 2-4 5-4s5 1 5 4"/></svg>Wi-Fi</span>
               </div>
-              <a href="https://wa.me/254700000000?text=Hello%20Enkang%20Sidai%2C%20I%20would%20like%20to%20enquire%20about%20the%20Olmoran%20Room." target="_blank" rel="noopener noreferrer" class="accom-enquire-btn" aria-label="Enquire about The Olmoran via WhatsApp">
-                Enquire via WhatsApp <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
-              </a>
+              <a href="https://wa.me/254700000000?text=Hello%20Enkang%20Sidai%2C%20I%20would%20like%20to%20enquire%20about%20the%20Olmoran%20Room." target="_blank" rel="noopener noreferrer" class="accom-enquire-btn" aria-label="Enquire about The Olmoran via WhatsApp">Enquire via WhatsApp <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h12M8 2l5 5-5 5"/></svg></a>
             </div>
           </article>
 
@@ -1583,9 +1617,7 @@
                 <span class="room-amenity"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 10V5l4-4 4 4v5"/></svg>Garden view</span>
                 <span class="room-amenity"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="6" cy="5" r="3"/><path d="M1 11c0-3 2-4 5-4s5 1 5 4"/></svg>Wi-Fi</span>
               </div>
-              <a href="https://wa.me/254700000000?text=Hello%20Enkang%20Sidai%2C%20I%20would%20like%20to%20enquire%20about%20the%20Enkiama%20Room." target="_blank" rel="noopener noreferrer" class="accom-enquire-btn" aria-label="Enquire about The Enkiama via WhatsApp">
-                Enquire via WhatsApp <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
-              </a>
+              <a href="https://wa.me/254700000000?text=Hello%20Enkang%20Sidai%2C%20I%20would%20like%20to%20enquire%20about%20the%20Enkiama%20Room." target="_blank" rel="noopener noreferrer" class="accom-enquire-btn" aria-label="Enquire about The Enkiama via WhatsApp">Enquire via WhatsApp <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h12M8 2l5 5-5 5"/></svg></a>
             </div>
           </article>
 
@@ -1601,9 +1633,7 @@
                 <span class="room-amenity"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 10V5l4-4 4 4v5"/></svg>Courtyard view</span>
                 <span class="room-amenity"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="6" cy="5" r="3"/><path d="M1 11c0-3 2-4 5-4s5 1 5 4"/></svg>Wi-Fi</span>
               </div>
-              <a href="https://wa.me/254700000000?text=Hello%20Enkang%20Sidai%2C%20I%20would%20like%20to%20enquire%20about%20the%20Laikipia%20Room." target="_blank" rel="noopener noreferrer" class="accom-enquire-btn" aria-label="Enquire about The Laikipia via WhatsApp">
-                Enquire via WhatsApp <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
-              </a>
+              <a href="https://wa.me/254700000000?text=Hello%20Enkang%20Sidai%2C%20I%20would%20like%20to%20enquire%20about%20the%20Laikipia%20Room." target="_blank" rel="noopener noreferrer" class="accom-enquire-btn" aria-label="Enquire about The Laikipia via WhatsApp">Enquire via WhatsApp <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h12M8 2l5 5-5 5"/></svg></a>
             </div>
           </article>
 
@@ -1619,9 +1649,7 @@
                 <span class="room-amenity"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 10V5l4-4 4 4v5"/></svg>Mountain view</span>
                 <span class="room-amenity"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="6" cy="5" r="3"/><path d="M1 11c0-3 2-4 5-4s5 1 5 4"/></svg>Wi-Fi</span>
               </div>
-              <a href="https://wa.me/254700000000?text=Hello%20Enkang%20Sidai%2C%20I%20would%20like%20to%20enquire%20about%20the%20Amboseli%20Room." target="_blank" rel="noopener noreferrer" class="accom-enquire-btn" aria-label="Enquire about The Amboseli via WhatsApp">
-                Enquire via WhatsApp <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
-              </a>
+              <a href="https://wa.me/254700000000?text=Hello%20Enkang%20Sidai%2C%20I%20would%20like%20to%20enquire%20about%20the%20Amboseli%20Room." target="_blank" rel="noopener noreferrer" class="accom-enquire-btn" aria-label="Enquire about The Amboseli via WhatsApp">Enquire via WhatsApp <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h12M8 2l5 5-5 5"/></svg></a>
             </div>
           </article>
 
@@ -1637,9 +1665,7 @@
                 <span class="room-amenity"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 10V5l4-4 4 4v5"/></svg>Valley view</span>
                 <span class="room-amenity"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="6" cy="5" r="3"/><path d="M1 11c0-3 2-4 5-4s5 1 5 4"/></svg>Wi-Fi</span>
               </div>
-              <a href="https://wa.me/254700000000?text=Hello%20Enkang%20Sidai%2C%20I%20would%20like%20to%20enquire%20about%20the%20Kedong%20Room." target="_blank" rel="noopener noreferrer" class="accom-enquire-btn" aria-label="Enquire about The Kedong via WhatsApp">
-                Enquire via WhatsApp <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
-              </a>
+              <a href="https://wa.me/254700000000?text=Hello%20Enkang%20Sidai%2C%20I%20would%20like%20to%20enquire%20about%20the%20Kedong%20Room." target="_blank" rel="noopener noreferrer" class="accom-enquire-btn" aria-label="Enquire about The Kedong via WhatsApp">Enquire via WhatsApp <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h12M8 2l5 5-5 5"/></svg></a>
             </div>
           </article>
 
@@ -1658,17 +1684,9 @@
               <h3 class="manyatta-name">Enkare</h3>
               <div class="manyatta-meaning">Meaning: Water — the source of life</div>
               <p class="manyatta-desc">The first manyatta at the edge of the compound, where the land opens and the air carries the cool memory of the river. Built in the traditional Maasai circular form, Enkare is both intimate and grounding — a return to something essential.</p>
-              <ul class="manyatta-features" aria-label="Features">
-                <li>Traditional circular construction with thatched roof</li>
-                <li>Hand-finished interior with local materials</li>
-                <li>Private outdoor seating area</li>
-                <li>En-suite facilities</li>
-                <li>Morning fire ritual on request</li>
-              </ul>
+              <ul class="manyatta-features" aria-label="Features"><li>Traditional circular construction with thatched roof</li><li>Hand-finished interior with local materials</li><li>Private outdoor seating area</li><li>En-suite facilities</li><li>Morning fire ritual on request</li></ul>
               <div class="manyatta-price">[Price TBC] / night</div>
-              <a href="https://wa.me/254700000000?text=Hello%20Enkang%20Sidai%2C%20I%20would%20like%20to%20enquire%20about%20the%20Enkare%20Manyatta." target="_blank" rel="noopener noreferrer" class="accom-enquire-btn" aria-label="Enquire about Enkare Manyatta via WhatsApp">
-                Enquire via WhatsApp <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
-              </a>
+              <a href="https://wa.me/254700000000?text=Hello%20Enkang%20Sidai%2C%20I%20would%20like%20to%20enquire%20about%20the%20Enkare%20Manyatta." target="_blank" rel="noopener noreferrer" class="accom-enquire-btn" aria-label="Enquire about Enkare Manyatta via WhatsApp">Enquire via WhatsApp <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h12M8 2l5 5-5 5"/></svg></a>
             </div>
           </article>
 
@@ -1680,17 +1698,9 @@
               <h3 class="manyatta-name">Osotua</h3>
               <div class="manyatta-meaning">Meaning: Bond of friendship — a sacred trust</div>
               <p class="manyatta-desc">In Maasai culture, osotua is the deepest form of relationship — one that asks nothing and gives everything. This manyatta carries that spirit. Guests here often report feeling not like visitors, but like they belong. That is entirely intentional.</p>
-              <ul class="manyatta-features" aria-label="Features">
-                <li>Traditional circular construction with thatched roof</li>
-                <li>Couples-optimised layout with central bed</li>
-                <li>Private outdoor seating with fire pit</li>
-                <li>En-suite facilities</li>
-                <li>Cultural welcome ceremony on arrival</li>
-              </ul>
+              <ul class="manyatta-features" aria-label="Features"><li>Traditional circular construction with thatched roof</li><li>Couples-optimised layout with central bed</li><li>Private outdoor seating with fire pit</li><li>En-suite facilities</li><li>Cultural welcome ceremony on arrival</li></ul>
               <div class="manyatta-price">[Price TBC] / night</div>
-              <a href="https://wa.me/254700000000?text=Hello%20Enkang%20Sidai%2C%20I%20would%20like%20to%20enquire%20about%20the%20Osotua%20Manyatta." target="_blank" rel="noopener noreferrer" class="accom-enquire-btn" aria-label="Enquire about Osotua Manyatta via WhatsApp">
-                Enquire via WhatsApp <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
-              </a>
+              <a href="https://wa.me/254700000000?text=Hello%20Enkang%20Sidai%2C%20I%20would%20like%20to%20enquire%20about%20the%20Osotua%20Manyatta." target="_blank" rel="noopener noreferrer" class="accom-enquire-btn" aria-label="Enquire about Osotua Manyatta via WhatsApp">Enquire via WhatsApp <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h12M8 2l5 5-5 5"/></svg></a>
             </div>
           </article>
 
@@ -1702,17 +1712,9 @@
               <h3 class="manyatta-name">Sapuk</h3>
               <div class="manyatta-meaning">Meaning: High place — where perspective returns</div>
               <p class="manyatta-desc">The manyatta positioned at the highest point of the compound, where the horizon arrives uninterrupted. On clear evenings the stars feel close enough to reach. Sapuk is for guests who came specifically to remember what silence sounds like.</p>
-              <ul class="manyatta-features" aria-label="Features">
-                <li>Traditional circular construction with thatched roof</li>
-                <li>Elevated position with panoramic views</li>
-                <li>Dedicated stargazing deck</li>
-                <li>En-suite facilities</li>
-                <li>Sundowner setup available on request</li>
-              </ul>
+              <ul class="manyatta-features" aria-label="Features"><li>Traditional circular construction with thatched roof</li><li>Elevated position with panoramic views</li><li>Dedicated stargazing deck</li><li>En-suite facilities</li><li>Sundowner setup available on request</li></ul>
               <div class="manyatta-price">[Price TBC] / night</div>
-              <a href="https://wa.me/254700000000?text=Hello%20Enkang%20Sidai%2C%20I%20would%20like%20to%20enquire%20about%20the%20Sapuk%20Manyatta." target="_blank" rel="noopener noreferrer" class="accom-enquire-btn" aria-label="Enquire about Sapuk Manyatta via WhatsApp">
-                Enquire via WhatsApp <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
-              </a>
+              <a href="https://wa.me/254700000000?text=Hello%20Enkang%20Sidai%2C%20I%20would%20like%20to%20enquire%20about%20the%20Sapuk%20Manyatta." target="_blank" rel="noopener noreferrer" class="accom-enquire-btn" aria-label="Enquire about Sapuk Manyatta via WhatsApp">Enquire via WhatsApp <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h12M8 2l5 5-5 5"/></svg></a>
             </div>
           </article>
 
@@ -1721,7 +1723,6 @@
 
       <!-- ═══ CAMPING ═══ -->
       <div class="accom-panel camping-panel" id="panel-camping" role="tabpanel" aria-labelledby="tab-camping">
-
         <div class="camping-hero reveal">
           <div class="camping-img">
             <div class="img-placeholder" aria-hidden="true">
@@ -1734,7 +1735,6 @@
             <div class="camping-capacity-label">Guests · Open campsite under the stars</div>
           </div>
         </div>
-
         <div class="camping-body reveal reveal-d1">
           <div>
             <p class="camping-desc">The campsite at Enkang Sidai is not a compromise. It is a choice — made by people who know that the best ceiling in Kenya costs nothing and requires only darkness and patience.</p>
@@ -1760,12 +1760,15 @@
             </ul>
           </div>
         </div>
-
       </div><!-- /panel-camping -->
 
+      <!-- Footer note + general enquiry button -->
       <div class="accom-footer-note reveal">
         <p class="accom-footer-note-text">All rates are per night. Pricing and availability confirmed on enquiry. Corporate and group rates available on request.</p>
-        <a href="https://wa.me/254700000000?text=Hello%20Enkang%20Sidai%2C%20I%20have%20a%20general%20enquiry%20about%20accommodation." target="_blank" rel="noopener noreferrer" class="accom-footer-note-link">General enquiry →</a>
+        <a href="https://wa.me/254700000000?text=Hello%20Enkang%20Sidai%2C%20I%20have%20a%20general%20enquiry%20about%20accommodation." target="_blank" rel="noopener noreferrer" class="accom-general-enquiry-btn" aria-label="Send a general accommodation enquiry via WhatsApp">
+          General Enquiry
+          <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
+        </a>
       </div>
 
     </div><!-- /accom-inner -->
@@ -1773,28 +1776,13 @@
 
   <div class="pattern-divider" aria-hidden="true"></div>
 
-  <div id="experiences" class="placeholder-section">
-    <h2>Experiences</h2>
-    <p>Session 4 — Coming soon</p>
-  </div>
+  <div id="experiences" class="placeholder-section"><h2>Experiences</h2><p>Session 4 — Coming soon</p></div>
   <div class="pattern-divider" aria-hidden="true"></div>
-
-  <div id="restaurant" class="placeholder-section">
-    <h2>Restaurant &amp; Bar</h2>
-    <p>Session 5 — Coming soon</p>
-  </div>
+  <div id="restaurant" class="placeholder-section"><h2>Restaurant &amp; Bar</h2><p>Session 5 — Coming soon</p></div>
   <div class="pattern-divider" aria-hidden="true"></div>
-
-  <div id="gallery" class="placeholder-section">
-    <h2>Gallery</h2>
-    <p>Session 6 — Coming soon</p>
-  </div>
+  <div id="gallery" class="placeholder-section"><h2>Gallery</h2><p>Session 6 — Coming soon</p></div>
   <div class="pattern-divider" aria-hidden="true"></div>
-
-  <div id="contact" class="placeholder-section">
-    <h2>Reserve Your Stay</h2>
-    <p>Session 7 — Coming soon</p>
-  </div>
+  <div id="contact" class="placeholder-section"><h2>Reserve Your Stay</h2><p>Session 7 — Coming soon</p></div>
   <div class="pattern-divider" aria-hidden="true"></div>
 
   <footer>
@@ -1885,7 +1873,7 @@
       });
     });
 
-    // TAB SCROLL FADE — remove right-edge fade when user has scrolled to the end
+    // TAB SCROLL FADE
     const tabsEl   = document.getElementById('accomTabs');
     const tabsWrap = document.getElementById('accomTabsWrap');
     function updateTabFade() {
@@ -1893,7 +1881,6 @@
       tabsWrap.classList.toggle('no-fade', atEnd);
     }
     tabsEl.addEventListener('scroll', updateTabFade, { passive: true });
-    // Run once on load — if all tabs visible on desktop, no fade needed
     updateTabFade();
   </script>
 
